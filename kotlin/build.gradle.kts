@@ -30,7 +30,7 @@ repositories {
 dependencies {
   compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   compile("org.jetbrains.kotlin:kotlin-reflect")
-
+  compile("com.google.guava:guava:27.0.1-jre")
 
   // TEST
 

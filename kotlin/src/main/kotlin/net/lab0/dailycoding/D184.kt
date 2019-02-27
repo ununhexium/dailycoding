@@ -5,7 +5,6 @@ package net.lab0.dailycoding
  * For example, given the numbers [42, 56, 14], return 14.
  * The given vector can't be empty
  */
-
 fun greatestCommonDenominator(list: List<Long>): Long {
     if (list.isEmpty()) {
         throw IllegalArgumentException("The vector can't be empty")
@@ -55,4 +54,3 @@ fun extractFactors(n: Long): List<Long> {
     }
     return factors
 }
-
