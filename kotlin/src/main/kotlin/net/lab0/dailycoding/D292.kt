@@ -1,5 +1,11 @@
 package net.lab0.dailycoding
 
+import org.jgrapht.alg.color.GreedyColoring
+import org.jgrapht.alg.cycle.SzwarcfiterLauerSimpleCycles
+import org.jgrapht.graph.DefaultEdge
+import org.jgrapht.graph.DefaultDirectedGraph
+
+
 /**
  * a -> z
  *      |
@@ -11,6 +17,7 @@ package net.lab0.dailycoding
  *
  * // TODO: could it be considered as a graph and then be possible only if we can find no loop or if there are loop, the loops are made of an even number of people
  */
+
 object D292 {
   /**
    * @return two teams or null if teams can't be made
@@ -39,5 +46,26 @@ object D292 {
 
     return group1 to group2
   }
-  
+
+  fun makeTeamsWithGraphs(students: Map<Int, Collection<Int>>): Pair<Collection<Int>, Collection<Int>>? {
+    val g = DefaultDirectedGraph<Int, Any>(Any::class.java)
+
+    students.forEach { (student, enemies) ->
+      enemies.forEach { enemy ->
+        g.addVertex(student)
+        g.addVertex(enemy)
+        g.addEdge(student, enemy)
+      }
+    }
+
+    val cycles = SzwarcfiterLauerSimpleCycles(g).findSimpleCycles()
+    if (cycles.any { it.size % 2 == 1 }) return null
+
+    val group1 = mutableSetOf<Int>()
+    val group2 = mutableSetOf<Int>()
+
+    val coloring = GreedyColoring(g).coloring
+    return if(coloring.colors.size > 2 ) null
+    else coloring.colorClasses.first() to coloring.colorClasses.last()
+  }
 }

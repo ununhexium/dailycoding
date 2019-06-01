@@ -28,14 +28,15 @@ repositories {
 }
 
 dependencies {
-  compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  compile("org.jetbrains.kotlin:kotlin-reflect")
-  compile("com.google.guava:guava:27.0.1-jre")
+  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+  implementation("org.jetbrains.kotlin:kotlin-reflect")
+  implementation("com.google.guava:guava:27.0.1-jre")
+  implementation("org.jgrapht:jgrapht-core:1.3.0")
 
   // TEST
 
   val junitJupiterVersion = "5.4.0"
-  testCompile("org.assertj","assertj-core","3.12.0")
+  testImplementation("org.assertj", "assertj-core", "3.12.0")
   testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
 }
@@ -47,7 +48,9 @@ buildscript {
   }
 }
 
-tasks.withType<Test> {
-  useJUnitPlatform()
+tasks {
+  withType<Test> {
+    useJUnitPlatform()
+  }
 }
 

@@ -23,11 +23,15 @@ internal class D292KtTest {
         5 to listOf(3)
     )
 
-    val (a, b) = D292.makeTeamsWithSets(students)!!
+    val (a1, b1) = D292.makeTeamsWithSets(students)!!
+    val (a2, b2) = D292.makeTeamsWithSets(students)!!
 
     // TODO: the opposite would also be valid
-    assertThat(b).containsExactlyInAnyOrder(0, 1, 4, 5)
-    assertThat(a).containsExactlyInAnyOrder(2, 3)
+    assertThat(b1).containsExactlyInAnyOrder(0, 1, 4, 5)
+    assertThat(a1).containsExactlyInAnyOrder(2, 3)
+
+    assertThat(b2).containsExactlyInAnyOrder(0, 1, 4, 5)
+    assertThat(a2).containsExactlyInAnyOrder(2, 3)
   }
 
   @Test
@@ -41,7 +45,9 @@ internal class D292KtTest {
       5 to listOf(3)
     )
 
-    val result = D292.makeTeamsWithSets(students)
-    assertThat(result).isNull()
+    val result1 = D292.makeTeamsWithSets(students)
+    val result2 = D292.makeTeamsWithGraphs(students)
+    assertThat(result1).isNull()
+    assertThat(result2).isNull()
   }
 }
