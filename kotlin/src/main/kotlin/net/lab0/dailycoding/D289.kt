@@ -44,14 +44,12 @@ package net.lab0.dailycoding
  * 0 2 2 -> P1 looses
  * 1 2 2 -> P1 looses
  *
+ * if there is a heap of size 1 and a heap of size 2+ -> win
  *
  * Is it really that simple?
  */
 object D289 {
   fun meh(heaps: List<Int>): Boolean {
-    return when {
-      heaps.all { it == 1 } || heaps.all { it > 1 } -> false //loose
-      else -> true // win
-    }
+    return heaps.any { it == 1 } && heaps.any { it > 1 }
   }
 }
